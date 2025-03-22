@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+} 
+
+.scrollable-content {
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.scrollable-content::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Hide scrollbar for Firefox */
+.scrollable-content {
+  scrollbar-width: none; /* Hide scrollbar */
+}
