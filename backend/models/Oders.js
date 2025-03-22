@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define the Order Schema
+// Define the Order Schema with enhanced product details
 const OrderSchema = new Schema({
   userId: {
     type: String,
@@ -16,7 +16,17 @@ const OrderSchema = new Schema({
       farmerId: {
         type: String,
         required: true
-      }
+      },
+      // Add product details for easier reference without joins
+      name: String,
+      price: Number,
+      image: String,
+      category: String,
+      quantity: {
+        type: Number,
+        default: 1
+      },
+      farmerName: String
     }
   ],
   shippingDetails: {
@@ -49,6 +59,10 @@ const OrderSchema = new Schema({
     type: String,
     enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled'],
     default: 'pending'
+  },
+  totalAmount: {
+    type: Number,
+    required: true
   },
   orderDate: {
     type: Date,
