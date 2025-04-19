@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema({
       cropName: String,
       location: String,
       category: String,
-      image: String,
+      images: [String],
       price: Number,
       stock: Number,
       estimatedDeliveryTime: String

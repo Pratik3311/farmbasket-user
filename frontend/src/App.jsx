@@ -4,6 +4,7 @@ import { NavbarMenu } from './components/Navbar'
 import Home from './pages/Home'
 import { BrowserRouter, Routes , Route } from 'react-router-dom'
 import Products from './pages/Products'
+import Cart from './pages/Cart'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 
@@ -33,6 +34,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={ <Products userId={userId} />} />
+        <Route path="/cart" element={<Cart />} />
         </Routes>
       
       

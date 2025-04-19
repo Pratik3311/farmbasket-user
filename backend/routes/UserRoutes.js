@@ -36,24 +36,32 @@ router.post("/api/orders", async (req, res) => {
     }
 });
 
-
-
 // Create or update a user
-router.post("/api/users", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { userId, name, email, picture } = req.body;
 
         if (!email) {
             return res.status(400).json({ error: "Email is required" });
         }
 
+        if (!userId) {
+            return res.status(400).json({ error: "User ID is required" });
+        }
+
         let user = await User.findOne({ email });
 
         if (user) {
-            return res.status(400).json({ error: "User already exists" });
+            // Update existing user
+            user.name = name;
+            user.picture = picture;
+            user.lastLogin = new Date();
+            await user.save();
+            return res.status(200).json({ message: "User updated successfully", user });
         }
 
-        user = new User({ name, email, password });
+        // Create new user
+        user = new User({ userId, name, email, picture });
         await user.save();
 
         res.status(201).json({ message: "User created successfully", user });
@@ -64,7 +72,6 @@ router.post("/api/users", async (req, res) => {
 });
 
 module.exports = router;
-
 
 // Get user by userId
 router.get("/getUserId/:email", async (req, res) => {
@@ -79,6 +86,5 @@ router.get("/getUserId/:email", async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
-
 
 module.exports = router;

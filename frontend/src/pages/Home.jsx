@@ -27,7 +27,7 @@ const Home = () => {
           };
           
           // Send to backend
-          const response = await axios.post(`http://localhost:5000/api/users`, userData);
+          const response = await axios.post(`http://localhost:5005/api/users`, userData);
           console.log('User saved to database:', response.data);
           setDbUser(response.data.user);
         } catch (error) {
